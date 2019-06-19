@@ -22,6 +22,8 @@ public class SmartServ {
          *              2. apple ipad
          *              3.apple iphone
          *              4.samsung galaxy
+         *              5.samsung note
+         *              6.samsung duos
          */
         Scanner sc = new Scanner(System.in);
         String title=sc.nextLine ();
