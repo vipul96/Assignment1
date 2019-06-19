@@ -25,7 +25,7 @@ public class SmartServ {
          */
         Scanner sc = new Scanner(System.in);
         String title=sc.nextLine ();
-        title.replaceAll ( "\\s","" ).toLowerCase ();
+        title=title.replaceAll ( "\\s",".*" ).toLowerCase ();
 
         Response res= (Response) given().
                 when().request().
@@ -34,8 +34,8 @@ public class SmartServ {
         Map <?,?>json =  res.jsonPath ().getMap ( "products" );
         for (Map.Entry<?,?> entry : json.entrySet()){
             String string = entry.getKey ().toString ();
-            Pattern pattern=Pattern.compile ( title.replaceAll ( "\\s","" ).toLowerCase ());
-            Matcher matcher = pattern.matcher ( res.jsonPath ().getString ( "products."+string +".title" ).replaceAll ( "\\s","" ).toLowerCase ());
+            Pattern pattern=Pattern.compile ( title.toLowerCase ());
+            Matcher matcher = pattern.matcher ( res.jsonPath ().getString ( "products."+string +".title" ).toLowerCase ());
 
            while(matcher.find ()){
                System.out.println (res.jsonPath ().getString ( "products."+string +""));
